@@ -5,6 +5,7 @@ import CapabilityLaunchPopup from "@/components/common/CapabilityLaunchPopup.vue
 
 const route = useRoute();
 const mobileNavOpen = ref(false);
+const SHOW_CAPABILITY_POPUP = false;
 
 watch(
   () => route.fullPath,
@@ -20,7 +21,7 @@ function toggleMobileNav() {
 
 <template>
   <div class="page-shell">
-    <CapabilityLaunchPopup />
+    <CapabilityLaunchPopup v-if="SHOW_CAPABILITY_POPUP" />
     <header class="nav-bar" :class="{ 'nav-bar--open': mobileNavOpen }" role="banner">
       <div class="nav-bar__inner">
         <div class="brand-block">
