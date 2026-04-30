@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { HomeStory } from "@/types/content";
-import SectionContainer from "@/components/common/SectionContainer.vue";
 import { RouterLink } from "vue-router";
 
 defineProps<{
@@ -9,118 +8,248 @@ defineProps<{
 </script>
 
 <template>
-  <SectionContainer id="stories" label="Stories" aria-label="Career stories">
-    <h2 class="section-title">How I work, in three threads</h2>
-    <p class="section-lede">
-      Resume bullets are compressed truth. These are the hooks — deeper narrative lives on each project page.
-    </p>
-    <div class="stories-grid stories-mosaic">
-      <article
-        v-for="(a, index) in articles"
-        :key="a.id"
-        class="story-article story-card reveal"
-        :class="[`d${index + 1}`, { 'story-card--linked': Boolean(a.link) }]"
-      >
-        <div class="story-card__head">
+  <section id="stories" class="stories-section" aria-label="Career stories">
+    <div class="stories-section__inner">
+      <div class="stories-section__head">
+        <div>
+          <p class="kicker">Selected stories</p>
+          <h2 class="stories-section__h2">What I've built. What I've led.</h2>
+        </div>
+        <p class="stories-section__hint mono">Hover any card</p>
+      </div>
+
+      <!-- Featured lead card -->
+      <div v-if="articles[0]" class="stories-lead story-card reveal d1" :class="{ 'story-card--linked': Boolean(articles[0].link) }">
+        <div class="stories-lead__left">
+          <div class="stories-lead__tags">
+            <span class="chip">Platform engineering</span>
+            <span class="chip">2022 – 2026</span>
+            <span class="stories-lead__featured mono">★ Featured</span>
+          </div>
+          <h3 class="stories-lead__title">
+            <RouterLink v-if="articles[0].link" :to="articles[0].link.to" class="stories-lead__link">
+              {{ articles[0].headline }}
+            </RouterLink>
+            <template v-else>{{ articles[0].headline }}</template>
+          </h3>
+          <p class="stories-lead__dek">{{ articles[0].dek }}</p>
+          <RouterLink v-if="articles[0].link" :to="articles[0].link.to" class="btn btn-ghost stories-lead__btn">
+            View project →
+          </RouterLink>
+        </div>
+        <div class="stories-lead__right" aria-hidden="true">
+          <p class="stories-lead__placeholder mono">Flickify · drop screenshot here</p>
+        </div>
+      </div>
+
+      <!-- Remaining cards 2-col grid -->
+      <div class="stories-grid">
+        <article
+          v-for="(a, index) in articles.slice(1)"
+          :key="a.id"
+          class="story-article story-card reveal"
+          :class="[`d${index + 2}`, { 'story-card--linked': Boolean(a.link) }]"
+        >
           <h3 class="story-card__title">
             <RouterLink v-if="a.link" :to="a.link.to" class="story-card__title-link">{{ a.headline }}</RouterLink>
             <template v-else>{{ a.headline }}</template>
           </h3>
-          <span v-if="a.link" class="story-arrow" aria-hidden="true">→</span>
-        </div>
-        <p class="article-dek">{{ a.dek }}</p>
-      </article>
+          <p class="article-dek">{{ a.dek }}</p>
+          <RouterLink v-if="a.link" :to="a.link.to" class="story-card__cta mono">View project →</RouterLink>
+        </article>
+      </div>
     </div>
-  </SectionContainer>
+  </section>
 </template>
 
 <style scoped>
-.story-card--linked {
-  cursor: pointer;
+.stories-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
 }
 
-.story-card__head {
+.stories-section__inner {
+  padding-inline: var(--pad-x);
+}
+
+.stories-section__head {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: 0.75rem;
+  align-items: flex-end;
+  margin-bottom: 36px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
 }
-.story-card__title {
+
+.stories-section__h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  margin-top: 12px;
+  letter-spacing: -0.02em;
+}
+
+.stories-section__hint {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 500;
-  flex: 1;
-  min-width: 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  align-self: flex-end;
+  padding-bottom: 4px;
 }
+
+/* Lead card */
+.stories-lead {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 0;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  margin-bottom: 20px;
+}
+
+.stories-lead__left {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stories-lead__right {
+  padding: 4px;
+  background: var(--bg-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+}
+
+.stories-lead__placeholder {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  opacity: 0.5;
+}
+
+.stories-lead__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+  align-items: center;
+}
+
+.stories-lead__featured {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-left: 4px;
+}
+
+.stories-lead__title {
+  font-size: clamp(1.5rem, 2.5vw, 2.375rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+
+.stories-lead__link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.stories-lead__link:hover {
+  color: var(--accent);
+}
+
+.stories-lead__dek {
+  font-size: 17px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin: 0 0 24px;
+  flex: 1;
+}
+
+.stories-lead__btn {
+  align-self: flex-start;
+}
+
+/* Grid cards */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.story-article {
+  padding: 30px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  display: flex;
+  flex-direction: column;
+}
+
+.story-card__title {
+  font-size: 1.5rem;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  margin: 0 0 14px;
+  font-weight: 500;
+}
+
 .story-card__title-link {
   color: inherit;
   text-decoration: none;
   transition: color 180ms ease;
 }
+
 .story-card__title-link:hover {
   color: var(--accent);
 }
-.stories-mosaic {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 1rem;
+
+.article-dek {
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin: 0 0 20px;
+  flex: 1;
 }
 
-.stories-mosaic .story-article {
-  position: relative;
-  min-height: 10.5rem;
-  padding: 1.35rem 1.2rem 1.15rem;
-  overflow: hidden;
+.story-card__cta {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color 180ms ease;
 }
 
-.stories-mosaic .story-article::after {
-  content: "";
-  position: absolute;
-  right: 0.85rem;
-  top: 0.85rem;
-  width: 0.45rem;
-  height: 0.45rem;
-  border: 1px solid var(--line-2);
-  opacity: 0.6;
-}
-
-.stories-mosaic .story-article:nth-child(1) {
-  grid-column: span 7;
-  grid-row: span 2;
-  min-height: 15rem;
-}
-
-.stories-mosaic .story-article:nth-child(2),
-.stories-mosaic .story-article:nth-child(3) {
-  grid-column: span 5;
-}
-
-.stories-mosaic .story-article:nth-child(n + 4) {
-  grid-column: span 6;
-}
-
-@media (max-width: 1024px) {
-  .stories-mosaic .story-article:nth-child(1) {
-    grid-column: span 12;
-    grid-row: span 1;
-  }
-  .stories-mosaic .story-article:nth-child(2),
-  .stories-mosaic .story-article:nth-child(3),
-  .stories-mosaic .story-article:nth-child(n + 4) {
-    grid-column: span 6;
-  }
+.story-card__cta:hover {
+  color: var(--accent-2);
 }
 
 @media (max-width: 900px) {
-  .stories-mosaic {
+  .stories-lead {
     grid-template-columns: 1fr;
   }
-  .stories-mosaic .story-article,
-  .stories-mosaic .story-article:nth-child(1),
-  .stories-mosaic .story-article:nth-child(2),
-  .stories-mosaic .story-article:nth-child(3),
-  .stories-mosaic .story-article:nth-child(n + 4) {
-    grid-column: auto;
-    min-height: 0;
+
+  .stories-lead__right {
+    min-height: 160px;
+  }
+
+  .stories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stories-section__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 </style>

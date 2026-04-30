@@ -23,16 +23,72 @@ defineProps<{
 }
 
 .metrics-strip__grid {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 1.1rem;
+  padding-bottom: 1.05rem;
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.metrics-strip__grid :deep(.stat-block) {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  padding: 0 1.35rem;
+}
+
+.metrics-strip__grid :deep(.stat-block + .stat-block) {
+  border-left: 1px solid var(--line);
+}
+
+.metrics-strip__grid :deep(.stat-num) {
+  font-size: clamp(3rem, 4.6vw, 4.15rem);
+  line-height: 0.92;
+  margin: 0;
+}
+
+.metrics-strip__grid :deep(.stat-label) {
+  margin-top: 0.55rem;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+}
+
+.metrics-strip__grid :deep(.stat-detail) {
+  display: none;
 }
 
 @media (max-width: 900px) {
+  .metrics-strip > .container {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .metrics-strip__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 0;
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+  }
+
+  .metrics-strip__grid :deep(.stat-block:nth-child(odd)) {
+    border-left: 0;
+  }
+
+  .metrics-strip__grid :deep(.stat-block:nth-child(even)) {
+    border-left: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 640px) {
   .metrics-strip__grid {
     grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .metrics-strip__grid :deep(.stat-block) {
+    border-left: 0 !important;
+    padding-inline: 0.25rem;
   }
 }
 </style>

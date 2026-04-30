@@ -6,11 +6,11 @@ export interface CtaLink {
 
 export interface HeroContent {
   headline: string;
-  /** Substring of `headline` to wrap with `.line-accent` (must match exactly). */
-  lineAccent?: string;
+  /** One or more substrings to italicise + colour with var(--accent). Each must match exactly. */
+  lineAccents?: string[];
   subhead: string;
-  primaryCta: CtaLink;
-  secondaryCta: CtaLink;
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
 }
 
 /** Baseline-shaped homepage story card (title, dek, optional link, tags). */
@@ -31,6 +31,7 @@ export interface HomeMetric {
 export interface HomeJumpNavItem {
   index: string;
   label: string;
+  sublabel?: string;
   href: string;
 }
 

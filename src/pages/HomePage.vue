@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { homeContent } from "@/content/home";
 import HeroSection from "@/components/home/HeroSection.vue";
-import MetricsStripSection from "@/components/home/MetricsStripSection.vue";
 import StackMarqueeSection from "@/components/home/StackMarqueeSection.vue";
 import SectionJumpNavStrip from "@/components/home/SectionJumpNavStrip.vue";
 import StoryArticlesSection from "@/components/home/StoryArticlesSection.vue";
@@ -13,8 +12,7 @@ import ClosingCtaSection from "@/components/home/ClosingCtaSection.vue";
 
 <template>
   <div class="home">
-    <HeroSection :content="homeContent.hero" />
-    <MetricsStripSection :metrics="homeContent.metrics" />
+    <HeroSection :content="homeContent.hero" :metrics="homeContent.metrics" />
     <StackMarqueeSection :labels="homeContent.stackMarquee" />
     <SectionJumpNavStrip :items="homeContent.jumpNav" />
     <StoryArticlesSection :articles="homeContent.story" />
@@ -26,12 +24,6 @@ import ClosingCtaSection from "@/components/home/ClosingCtaSection.vue";
       :body="homeContent.closingCta.body"
       :link-label="homeContent.closingCta.linkLabel"
       :link-to="homeContent.closingCta.linkTo"
-      :secondary-label="homeContent.closingCta.secondaryLabel"
-      :secondary-href="homeContent.closingCta.secondaryHref"
-      :tertiary-label="homeContent.closingCta.tertiaryLabel"
-      :tertiary-href="homeContent.closingCta.tertiaryHref"
-      :quaternary-label="homeContent.closingCta.quaternaryLabel"
-      :quaternary-href="homeContent.closingCta.quaternaryHref"
     />
   </div>
 </template>
