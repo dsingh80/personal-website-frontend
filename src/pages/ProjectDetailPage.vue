@@ -6,6 +6,16 @@ import { getProjectBySlug } from "@/content/projects";
 const route = useRoute();
 const slug = computed(() => route.params.slug as string);
 const project = computed(() => getProjectBySlug(slug.value));
+
+function getStoryBlocks(fullStory: string) {
+  return fullStory.split("\n\n").map((block) => {
+    const [firstLine, ...rest] = block.split("\n");
+    return {
+      heading: firstLine?.trim() ?? "",
+      body: rest.join("\n").trim(),
+    };
+  });
+}
 </script>
 
 <template>
@@ -29,6 +39,12 @@ const project = computed(() => getProjectBySlug(slug.value));
             l.label
           }}</a>
         </p>
+        <section v-if="project.fullStory" class="story">
+          <div v-for="(block, idx) in getStoryBlocks(project.fullStory)" :key="`${project.slug}-story-${idx}`" class="story-block">
+            <p v-if="idx !== 0" class="story-heading">{{ block.heading }}</p>
+            <p class="story-body">{{ block.body }}</p>
+          </div>
+        </section>
       </template>
       <template v-else>
         <h1 class="title">Project not found</h1>
@@ -99,5 +115,26 @@ const project = computed(() => getProjectBySlug(slug.value));
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-md);
+}
+
+.story {
+  margin-top: var(--space-2xl);
+}
+
+.story-block {
+  margin: 0 0 var(--space-lg);
+}
+
+.story-heading {
+  margin: 0 0 var(--space-xs);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.story-body {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  white-space: pre-line;
 }
 </style>

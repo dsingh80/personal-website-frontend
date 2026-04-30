@@ -18,6 +18,8 @@ export interface HomeStory {
   id: string;
   headline: string;
   dek: string;
+  tag?: string;
+  year?: string;
   detail?: string;
   link?: CtaLink;
 }
@@ -128,6 +130,8 @@ export interface ProjectEntry {
   highlights: string[];
   /** Short outcome line for cards / listings */
   impact?: string;
+  /** Long-form case study body shown on dedicated project pages */
+  fullStory?: string;
   narrative?: ProjectNarrative;
   links?: { label: string; href: string }[];
 }

@@ -13,7 +13,7 @@ defineProps<{
       <div class="stories-section__head">
         <div>
           <p class="kicker">Selected stories</p>
-          <h2 class="stories-section__h2">What I've built. What I've led.</h2>
+          <h2 class="stories-section__h2">Projects I've contributed to and learned from.</h2>
         </div>
         <p class="stories-section__hint mono">Hover any card</p>
       </div>
@@ -22,8 +22,8 @@ defineProps<{
       <div v-if="articles[0]" class="stories-lead story-card reveal d1" :class="{ 'story-card--linked': Boolean(articles[0].link) }">
         <div class="stories-lead__left">
           <div class="stories-lead__tags">
-            <span class="chip">Platform engineering</span>
-            <span class="chip">2022 – 2026</span>
+            <span v-if="articles[0].tag" class="chip">{{ articles[0].tag }}</span>
+            <span v-if="articles[0].year" class="chip">{{ articles[0].year }}</span>
             <span class="stories-lead__featured mono">★ Featured</span>
           </div>
           <h3 class="stories-lead__title">
@@ -50,6 +50,10 @@ defineProps<{
           class="story-article story-card reveal"
           :class="[`d${index + 2}`, { 'story-card--linked': Boolean(a.link) }]"
         >
+          <div class="story-card__tags">
+            <span v-if="a.tag" class="chip">{{ a.tag }}</span>
+            <span v-if="a.year" class="chip">{{ a.year }}</span>
+          </div>
           <h3 class="story-card__title">
             <RouterLink v-if="a.link" :to="a.link.to" class="story-card__title-link">{{ a.headline }}</RouterLink>
             <template v-else>{{ a.headline }}</template>
@@ -191,6 +195,13 @@ defineProps<{
   background: var(--bg-2);
   display: flex;
   flex-direction: column;
+}
+
+.story-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
 }
 
 .story-card__title {
