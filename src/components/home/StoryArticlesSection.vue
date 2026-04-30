@@ -52,7 +52,7 @@ function getStoryStack(story: HomeStory): string[] {
           </RouterLink>
         </div>
         <div class="stories-lead__right" aria-hidden="true">
-          <p class="stories-lead__placeholder mono">Flickify · drop screenshot here</p>
+          <img class="stories-lead__image" src="/flickify_pipeline_placeholder.svg" alt="" />
         </div>
       </div>
 
@@ -144,13 +144,11 @@ function getStoryStack(story: HomeStory): string[] {
   min-height: 280px;
 }
 
-.stories-lead__placeholder {
-  margin: 0;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-4);
-  opacity: 0.5;
+.stories-lead__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .stories-lead__tags {
