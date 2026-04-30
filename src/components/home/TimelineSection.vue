@@ -100,8 +100,17 @@ defineProps<{
   }
   .tl-row {
     grid-template-columns: 1fr;
-    gap: 0.25rem;
-    padding: 0.9rem 0;
+    gap: 0.6rem;
+    padding: 1.1rem 0.85rem;
+    align-items: start;
+  }
+  .tl-headline {
+    line-height: 1.3;
+  }
+  .tl-detail {
+    opacity: 1;
+    max-height: none;
+    margin-top: 0.25rem;
   }
   .tl-num {
     display: none;

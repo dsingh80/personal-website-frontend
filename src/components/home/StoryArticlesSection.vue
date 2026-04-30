@@ -26,7 +26,6 @@ function getStoryStack(story: HomeStory): string[] {
           <p class="kicker">Selected stories</p>
           <h2 class="stories-section__h2">Projects I've contributed to and learned from.</h2>
         </div>
-        <p class="stories-section__hint mono">Hover any card</p>
       </div>
 
       <!-- Featured lead card -->
@@ -106,17 +105,6 @@ function getStoryStack(story: HomeStory): string[] {
   font-size: clamp(1.8rem, 3.5vw, 2.75rem);
   margin-top: 12px;
   letter-spacing: -0.02em;
-}
-
-.stories-section__hint {
-  margin: 0;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  white-space: nowrap;
-  align-self: flex-end;
-  padding-bottom: 4px;
 }
 
 /* Lead card */
