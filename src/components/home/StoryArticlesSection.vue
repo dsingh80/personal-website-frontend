@@ -1,10 +1,21 @@
 <script setup lang="ts">
 import type { HomeStory } from "@/types/content";
+import { getProjectBySlug } from "@/content/projects";
 import { RouterLink } from "vue-router";
 
 defineProps<{
   articles: HomeStory[];
 }>();
+
+function getStoryStack(story: HomeStory): string[] {
+  const linkTo = story.link?.to;
+  if (!linkTo?.startsWith("/projects/")) return [];
+
+  const slug = linkTo.replace("/projects/", "").trim();
+  if (!slug) return [];
+
+  return getProjectBySlug(slug)?.stack ?? [];
+}
 </script>
 
 <template>
@@ -13,7 +24,7 @@ defineProps<{
       <div class="stories-section__head">
         <div>
           <p class="kicker">Selected stories</p>
-          <h2 class="stories-section__h2">What I've built. What I've led.</h2>
+          <h2 class="stories-section__h2">Projects I've contributed to and learned from.</h2>
         </div>
         <p class="stories-section__hint mono">Hover any card</p>
       </div>
@@ -22,8 +33,8 @@ defineProps<{
       <div v-if="articles[0]" class="stories-lead story-card reveal d1" :class="{ 'story-card--linked': Boolean(articles[0].link) }">
         <div class="stories-lead__left">
           <div class="stories-lead__tags">
-            <span class="chip">Platform engineering</span>
-            <span class="chip">2022 – 2026</span>
+            <span v-if="articles[0].tag" class="chip">{{ articles[0].tag }}</span>
+            <span v-if="articles[0].year" class="chip">{{ articles[0].year }}</span>
             <span class="stories-lead__featured mono">★ Featured</span>
           </div>
           <h3 class="stories-lead__title">
@@ -33,6 +44,9 @@ defineProps<{
             <template v-else>{{ articles[0].headline }}</template>
           </h3>
           <p class="stories-lead__dek">{{ articles[0].dek }}</p>
+          <ul v-if="getStoryStack(articles[0]).length" class="story-card__mini-tags">
+            <li v-for="s in getStoryStack(articles[0])" :key="`lead-${articles[0].id}-${s}`">{{ s }}</li>
+          </ul>
           <RouterLink v-if="articles[0].link" :to="articles[0].link.to" class="btn btn-ghost stories-lead__btn">
             View project →
           </RouterLink>
@@ -50,11 +64,18 @@ defineProps<{
           class="story-article story-card reveal"
           :class="[`d${index + 2}`, { 'story-card--linked': Boolean(a.link) }]"
         >
+          <div class="story-card__tags">
+            <span v-if="a.tag" class="chip">{{ a.tag }}</span>
+            <span v-if="a.year" class="chip">{{ a.year }}</span>
+          </div>
           <h3 class="story-card__title">
             <RouterLink v-if="a.link" :to="a.link.to" class="story-card__title-link">{{ a.headline }}</RouterLink>
             <template v-else>{{ a.headline }}</template>
           </h3>
           <p class="article-dek">{{ a.dek }}</p>
+          <ul v-if="getStoryStack(a).length" class="story-card__mini-tags">
+            <li v-for="s in getStoryStack(a)" :key="`${a.id}-${s}`">{{ s }}</li>
+          </ul>
           <RouterLink v-if="a.link" :to="a.link.to" class="story-card__cta mono">View project →</RouterLink>
         </article>
       </div>
@@ -193,6 +214,13 @@ defineProps<{
   flex-direction: column;
 }
 
+.story-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
 .story-card__title {
   font-size: 1.5rem;
   line-height: 1.18;
@@ -231,6 +259,23 @@ defineProps<{
 
 .story-card__cta:hover {
   color: var(--accent-2);
+}
+
+.story-card__mini-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.story-card__mini-tags li {
+  font-size: 0.8125rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
 }
 
 @media (max-width: 900px) {
