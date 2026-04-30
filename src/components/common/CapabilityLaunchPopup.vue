@@ -70,10 +70,10 @@ onBeforeUnmount(() => {
       <div class="capability-popup__grain bg-grain" aria-hidden="true" />
       <p class="capability-popup__eyebrow kicker">Capability Snapshot</p>
       <h2 :id="DIALOG_TITLE_ID" class="capability-popup__title">
-        This website is served, hosted, and engineered for production.
+        This website reflects how I approach practical, reliable engineering.
       </h2>
       <p class="capability-popup__intro">
-        Practical architecture choices to show real delivery capability, not just visual polish.
+        I care about thoughtful architecture, maintainability, and continuous improvement — not just visuals.
       </p>
 
       <ul class="capability-popup__list">

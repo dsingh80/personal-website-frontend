@@ -32,7 +32,7 @@ const titleParts = computed(() => {
     <div class="home-hero__inner">
       <div class="reveal" style="display:flex;align-items:center;gap:12px;margin-bottom:36px">
         <span class="pulse-dot" aria-hidden="true" />
-        <span class="home-hero__kicker mono">Open to Senior + Staff Engineering Roles</span>
+        <span class="home-hero__kicker mono">Open to Software Engineering Roles</span>
       </div>
       <h1 class="home-hero__title reveal d1">
         <template v-for="part in titleParts" :key="part.text">

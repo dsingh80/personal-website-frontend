@@ -24,9 +24,9 @@ function toggleMobileNav() {
     <header class="nav-bar" :class="{ 'nav-bar--open': mobileNavOpen }" role="banner">
       <div class="nav-bar__inner">
         <div class="brand-block">
-          <RouterLink to="/" class="brand-avatar serif" aria-label="Dom Singh – home">D</RouterLink>
+          <RouterLink to="/" class="brand-avatar serif" aria-label="Damanveer (Dom) Singh – home">D</RouterLink>
           <div class="brand-text">
-            <RouterLink to="/" class="brand">Dom Singh</RouterLink>
+            <RouterLink to="/" class="brand">Damanveer (Dom) Singh</RouterLink>
             <p class="brand-meta mono">Senior Software Engineer · Indianapolis, IN</p>
           </div>
         </div>

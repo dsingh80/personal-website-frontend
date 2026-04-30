@@ -1,10 +1,21 @@
 <script setup lang="ts">
 import type { HomeStory } from "@/types/content";
+import { getProjectBySlug } from "@/content/projects";
 import { RouterLink } from "vue-router";
 
 defineProps<{
   articles: HomeStory[];
 }>();
+
+function getStoryStack(story: HomeStory): string[] {
+  const linkTo = story.link?.to;
+  if (!linkTo?.startsWith("/projects/")) return [];
+
+  const slug = linkTo.replace("/projects/", "").trim();
+  if (!slug) return [];
+
+  return getProjectBySlug(slug)?.stack ?? [];
+}
 </script>
 
 <template>
@@ -33,6 +44,9 @@ defineProps<{
             <template v-else>{{ articles[0].headline }}</template>
           </h3>
           <p class="stories-lead__dek">{{ articles[0].dek }}</p>
+          <ul v-if="getStoryStack(articles[0]).length" class="story-card__mini-tags">
+            <li v-for="s in getStoryStack(articles[0])" :key="`lead-${articles[0].id}-${s}`">{{ s }}</li>
+          </ul>
           <RouterLink v-if="articles[0].link" :to="articles[0].link.to" class="btn btn-ghost stories-lead__btn">
             View project →
           </RouterLink>
@@ -59,6 +73,9 @@ defineProps<{
             <template v-else>{{ a.headline }}</template>
           </h3>
           <p class="article-dek">{{ a.dek }}</p>
+          <ul v-if="getStoryStack(a).length" class="story-card__mini-tags">
+            <li v-for="s in getStoryStack(a)" :key="`${a.id}-${s}`">{{ s }}</li>
+          </ul>
           <RouterLink v-if="a.link" :to="a.link.to" class="story-card__cta mono">View project →</RouterLink>
         </article>
       </div>
@@ -242,6 +259,23 @@ defineProps<{
 
 .story-card__cta:hover {
   color: var(--accent-2);
+}
+
+.story-card__mini-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.story-card__mini-tags li {
+  font-size: 0.8125rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
 }
 
 @media (max-width: 900px) {

@@ -46,6 +46,8 @@ export interface TimelineEntry {
   period: string;
   /** Optional age metadata row from baseline */
   age?: string;
+  /** Optional company/org shown after headline */
+  company?: string;
   /** Fourth column: optional step index or stat */
   step?: string;
   /** Main heading line */

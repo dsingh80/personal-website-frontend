@@ -21,7 +21,7 @@ function getStoryBlocks(fullStory: string) {
 <template>
   <div class="page section">
     <div class="section-inner narrow">
-      <RouterLink to="/projects" class="back">← All projects</RouterLink>
+      <RouterLink to="/" class="back">← Back to home</RouterLink>
       <template v-if="project">
         <h1 class="title">{{ project.title }}</h1>
         <p class="role">{{ project.role }}</p>
@@ -49,7 +49,7 @@ function getStoryBlocks(fullStory: string) {
       <template v-else>
         <h1 class="title">Project not found</h1>
         <p class="summary">This slug is not in the content catalog yet.</p>
-        <RouterLink to="/projects">Browse projects</RouterLink>
+        <RouterLink to="/">Back to homepage</RouterLink>
       </template>
     </div>
   </div>

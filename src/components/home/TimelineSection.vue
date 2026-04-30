@@ -9,27 +9,46 @@ defineProps<{
 
 <template>
   <SectionContainer id="career" aria-label="Work history">
-    <h2 class="section-title">Fourteen years of compounding.</h2>
-    <p class="section-lede">
-      Most of my peers count their experience from their first internship. I started a decade earlier - and the
-      difference shows.
-    </p>
+    <div class="timeline-head">
+      <div>
+        <span class="kicker">THE CAREER ARC</span>
+        <h2 class="section-title">Fourteen years of compounding.</h2>
+        <p class="section-lede">
+          Most of my peers count their experience from their first internship. I started a decade earlier — and the
+          difference shows.
+        </p>
+      </div>
+      <span class="eyebrow">Hover any row</span>
+    </div>
     <div class="timeline-list" role="list">
       <div v-for="(e, index) in entries" :key="e.id" class="tl-row reveal" :class="`d${(index % 5) + 1}`" role="listitem">
         <span class="tl-age mono">{{ e.period }}</span>
-        <span class="tl-age-meta mono">{{ e.age }}</span>
+        <span class="tl-age-meta mono">age {{ e.age }}</span>
         <div class="tl-body">
-          <p class="tl-headline">{{ e.headline }}</p>
+          <p class="tl-headline">
+            {{ e.headline }}
+            <span v-if="e.company" class="tl-company"> · {{ e.company }}</span>
+          </p>
+          <p class="tl-detail">{{ e.lede }}</p>
         </div>
-        <span v-if="e.step" class="tl-num mono">{{ e.step }}</span>
+        <span class="tl-num mono">{{ String(index + 1).padStart(2, "0") }}</span>
       </div>
     </div>
   </SectionContainer>
 </template>
 
 <style scoped>
+.timeline-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  padding-bottom: 1.35rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
 .timeline-list {
-  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
 
@@ -56,10 +75,15 @@ defineProps<{
 
 .tl-headline {
   font-family: var(--serif);
-  font-size: 1.02rem;
-  line-height: 1.2;
+  font-size: 1.16rem;
+  line-height: 1.25;
   font-weight: 500;
   margin: 0;
+}
+
+.tl-company {
+  color: var(--ink-3);
+  font-weight: 400;
 }
 
 .tl-num {
@@ -69,6 +93,11 @@ defineProps<{
 }
 
 @media (max-width: 900px) {
+  .timeline-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
   .tl-row {
     grid-template-columns: 1fr;
     gap: 0.25rem;
