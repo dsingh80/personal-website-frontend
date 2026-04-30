@@ -1,0 +1,8 @@
+node_modules
+.tools
+dist
+*.local
+.DS_Store
+
+# Local copy of baseline design reference (large)
+public/baseline-template.html
