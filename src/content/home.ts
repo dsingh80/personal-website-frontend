@@ -84,7 +84,7 @@ export const homeContent: HomePageContent = {
     {
       id: "nutragroup-2017",
       period: "2017",
-      age: "17",
+      age: "19",
       headline: "Full Stack Developer",
       company: "Nutragroup Holdings",
       lede: "Learned to build dependable Node.js services from the ground up and improve workflows step by step.",
@@ -92,7 +92,7 @@ export const homeContent: HomePageContent = {
     {
       id: "pactsafe",
       period: "2018",
-      age: "18",
+      age: "20",
       headline: "SWE Intern",
       company: "PactSafe (now Ironclad)",
       lede: "Contributed to a live migration from RequireJS to React and grew a lot through hands-on mentoring.",
@@ -100,7 +100,7 @@ export const homeContent: HomePageContent = {
     {
       id: "nutragroup-2018-2021",
       period: "2018 — 2021",
-      age: "18 — 21",
+      age: "20 — 23",
       headline: "Full Stack Developer",
       company: "Nutragroup Holdings",
       lede: "Helped modernize legacy systems, improve API clarity, and collaborate across teams to solve practical problems.",
@@ -108,7 +108,7 @@ export const homeContent: HomePageContent = {
     {
       id: "iupui",
       period: "2020",
-      age: "20",
+      age: "22",
       headline: "B.S. Computer Science",
       company: "IUPUI",
       lede: "Graduated while continuing to build on the practical experience I had gained through earlier work.",
@@ -116,7 +116,7 @@ export const homeContent: HomePageContent = {
     {
       id: "thobias",
       period: "2021 — 2022",
-      age: "21 — 22",
+      age: "23 — 24",
       headline: "Chief Technology Officer",
       company: "Thobias.com",
       lede: "Supported product and operations across the stack, and helped the team ship with much shorter release cycles.",
@@ -124,7 +124,7 @@ export const homeContent: HomePageContent = {
     {
       id: "ezoic",
       period: "2022 — 2026",
-      age: "22 — 26",
+      age: "24 — 28",
       headline: "Senior Software Engineer",
       company: "Ezoic",
       lede: "Contributed across architecture and delivery for Flickify, with a focus on measurable performance improvements and steady iteration.",
@@ -132,7 +132,7 @@ export const homeContent: HomePageContent = {
     {
       id: "today",
       period: "Today",
-      age: "26",
+      age: "28",
       headline: "Looking for the next chapter",
       lede: "Seeking a team that values mentorship, communication, and ownership.",
     },
