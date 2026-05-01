@@ -173,6 +173,6 @@ export const homeContent: HomePageContent = {
     linkLabel: "singhdam27@gmail.com",
     linkTo: "mailto:singhdam27@gmail.com",
     secondaryLabel: "LinkedIn",
-    secondaryHref: "https://www.linkedin.com/in/domsingh/",
+    secondaryHref: "https://www.linkedin.com/in/dsingh80/",
   },
 };

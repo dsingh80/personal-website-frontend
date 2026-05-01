@@ -18,7 +18,7 @@ defineProps<{
       <div class="cta-section__btns">
         <a :href="linkTo" class="btn btn-primary">{{ linkLabel }} →</a>
         <a href="https://github.com/dsingh80" target="_blank" rel="noreferrer" class="btn">GitHub · @dsingh80</a>
-        <a href="https://www.linkedin.com/in/domsingh/" target="_blank" rel="noreferrer" class="btn">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/dsingh80/" target="_blank" rel="noreferrer" class="btn">LinkedIn</a>
       </div>
       <div class="cta-section__foot mono">
         <p>© 2026 Damanveer Singh · Indianapolis, IN · +1 (317) 997-5730</p>

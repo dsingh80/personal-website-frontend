@@ -2,7 +2,7 @@
 const links = [
   { label: "Email", href: "mailto:singhdam27@gmail.com", external: false },
   { label: "GitHub", href: "https://github.com/dsingh80", external: true },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/dsingh80", external: true },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/dsingh80/", external: true },
 ];
 </script>
 
