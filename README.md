@@ -31,3 +31,4 @@ npm run preview
 ## Parallel agent note
 
 If subagents reported an empty workspace, ensure this repository is checked out in the Cursor workspace root so `src/` exists before delegating file-scoped tasks.
+rebuild trigger: 0
