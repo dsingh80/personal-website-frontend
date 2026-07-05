@@ -3,6 +3,7 @@ import { onMounted, ref, watch } from "vue";
 import type { PortfolioHeroContent } from "@/types/content";
 import SectionReveal from "@/components/common/SectionReveal.vue";
 import BackgroundBlobs from "@/components/common/BackgroundBlobs.vue";
+import BackgroundBlob from "@/components/common/BackgroundBlob.vue";
 import PortraitFrame from "@/components/common/PortraitFrame.vue";
 import GetInTouchButton from "@/components/common/GetInTouchButton.vue";
 import SeeProjectsButton from "@/components/common/SeeProjectsButton.vue";
@@ -34,7 +35,11 @@ watch(isPast, (value) => emit("cta-out-of-view", value));
 
 <template>
   <section class="hero" aria-label="Introduction">
-    <BackgroundBlobs />
+    <BackgroundBlobs>
+      <BackgroundBlob top="-6%" left="0%" size="min(46vw, 560px)" color="accent" :intensity="46" :speed="0.32" />
+      <BackgroundBlob top="18%" right="-4%" size="min(44vw, 500px)" color="accent-2" :intensity="44" :speed="0.55" />
+      <BackgroundBlob top="116%" left="26%" size="min(40vw, 480px)" color="accent" :intensity="38" :speed="0.2" />
+    </BackgroundBlobs>
 
     <div class="hero__frame section-frame">
       <div class="hero__copy">
