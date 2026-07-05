@@ -6,24 +6,30 @@ const year = new Date().getFullYear();
 
 <template>
   <footer class="site-footer">
-    <span class="site-footer__copy">© {{ year }} {{ siteIdentity.shortName }} — built with care</span>
-    <nav class="site-footer__links" aria-label="Social">
-      <a :href="siteIdentity.github" target="_blank" rel="noopener noreferrer" class="site-footer__link">GitHub ↗</a>
-      <a :href="siteIdentity.linkedin" target="_blank" rel="noopener noreferrer" class="site-footer__link"
-        >LinkedIn ↗</a
-      >
-      <a :href="siteIdentity.resumeUrl" target="_blank" rel="noopener noreferrer" class="site-footer__link"
-        >Resume ↗</a
-      >
-      <a :href="`mailto:${siteIdentity.email}`" class="site-footer__link">Email →</a>
-    </nav>
+    <div class="site-footer__frame section-frame">
+      <span class="site-footer__copy">© {{ year }} {{ siteIdentity.shortName }} — built with care</span>
+      <nav class="site-footer__links" aria-label="Social">
+        <a :href="siteIdentity.github" target="_blank" rel="noopener noreferrer" class="site-footer__link">GitHub ↗</a>
+        <a :href="siteIdentity.linkedin" target="_blank" rel="noopener noreferrer" class="site-footer__link"
+          >LinkedIn ↗</a
+        >
+        <a :href="siteIdentity.resumeUrl" target="_blank" rel="noopener noreferrer" class="site-footer__link"
+          >Resume ↗</a
+        >
+        <a :href="`mailto:${siteIdentity.email}`" class="site-footer__link">Email →</a>
+      </nav>
+    </div>
   </footer>
 </template>
 
 <style scoped>
 .site-footer {
-  padding: 40px clamp(24px, 6vw, 88px);
+  padding-block: 40px;
   border-top: 1px solid var(--line);
+}
+
+.site-footer__frame {
+  padding-inline: clamp(24px, 6vw, 88px);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -58,7 +64,7 @@ const year = new Date().getFullYear();
 }
 
 @media (max-width: 600px) {
-  .site-footer {
+  .site-footer__frame {
     justify-content: center;
     text-align: center;
   }

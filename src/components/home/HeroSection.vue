@@ -36,33 +36,35 @@ watch(isPast, (value) => emit("cta-out-of-view", value));
   <section class="hero" aria-label="Introduction">
     <BackgroundBlobs />
 
-    <div class="hero__copy">
-      <SectionReveal as="span" :visible="heroReady" :index="0" class="hero__kicker">
-        {{ content.kicker }}
-      </SectionReveal>
-      <SectionReveal as="h1" :visible="heroReady" :index="1" class="hero__title">
-        {{ content.headline }}
-      </SectionReveal>
-      <SectionReveal as="p" :visible="heroReady" :index="2" class="hero__subhead">
-        {{ content.subhead }}
-      </SectionReveal>
-      
+    <div class="hero__frame section-frame">
+      <div class="hero__copy">
+        <SectionReveal as="span" :visible="heroReady" :index="0" class="hero__kicker">
+          {{ content.kicker }}
+        </SectionReveal>
+        <SectionReveal as="h1" :visible="heroReady" :index="1" class="hero__title">
+          {{ content.headline }}
+        </SectionReveal>
+        <SectionReveal as="p" :visible="heroReady" :index="2" class="hero__subhead">
+          {{ content.subhead }}
+        </SectionReveal>
+
         <SectionReveal as="div" :visible="heroReady" :index="3" class="hero__resume-link">
           <ViewResumeLink/>
         </SectionReveal>
-      
-      <div ref="sentinel" class="hero__cta-sentinel">
-        <SectionReveal as="div" :visible="heroReady" :index="4" class="hero__actions">
-          <GetInTouchButton />
-          <SeeProjectsButton />
+
+        <div ref="sentinel" class="hero__cta-sentinel">
+          <SectionReveal as="div" :visible="heroReady" :index="4" class="hero__actions">
+            <GetInTouchButton />
+            <SeeProjectsButton />
+          </SectionReveal>
+        </div>
+      </div>
+
+      <div class="hero__portrait-slot">
+        <SectionReveal as="div" :visible="heroReady" :index="1" class="hero__portrait">
+          <PortraitFrame class="hero__portrait-frame" src="/images/dom-portrait_600x.webp" alt="Portrait of Damanveer (Dom) Singh" fit="contain" />
         </SectionReveal>
       </div>
-    </div>
-
-    <div class="hero__portrait-slot">
-      <SectionReveal as="div" :visible="heroReady" :index="1" class="hero__portrait">
-        <PortraitFrame class="hero__portrait-frame" src="/images/dom-portrait_600x.webp" alt="Portrait of Damanveer (Dom) Singh" fit="contain" />
-      </SectionReveal>
     </div>
   </section>
 </template>
@@ -70,10 +72,16 @@ watch(isPast, (value) => emit("cta-out-of-view", value));
 <style scoped>
 .hero {
   position: relative;
+  min-height: min(80vh, 720px);
+}
+
+.hero__frame {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  min-height: min(80vh, 720px);
+  min-height: inherit;
+  /* hero__copy/hero__portrait-slot already carry their own edge padding */
+  padding-inline: 0;
 }
 
 .hero__copy {

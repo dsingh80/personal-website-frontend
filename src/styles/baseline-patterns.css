@@ -23,3 +23,22 @@
 .page.section {
   padding-block: var(--section-space-y);
 }
+
+/*
+ * Section-level width containment (like Bootstrap's .container). Put
+ * backgrounds/borders/vertical padding on the outer <section>, and wrap the
+ * actual content in .section-frame so it caps at 1440px and centers, while
+ * the section itself can still bleed full-width. Add .section-frame--fluid
+ * to opt a specific section's content out of the cap entirely.
+ */
+.section-frame {
+  width: 100%;
+  max-width: var(--section-maxw);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+  box-sizing: border-box;
+}
+
+.section-frame--fluid {
+  max-width: none;
+}
