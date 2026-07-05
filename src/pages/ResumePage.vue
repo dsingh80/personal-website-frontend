@@ -5,10 +5,9 @@ const pdfUrl = "/DamanveerSingh_Resume.pdf";
 <template>
   <div class="page section">
     <div class="section-inner">
-      <h1 class="title">Resume</h1>
+      <h1 class="title">My Resume</h1>
       <p class="lede">
-        PDF is the source of truth for dates and titles. This page is a quick access point for recruiters and hiring
-        managers.
+        This link should always have my most up-to-date resume! Come back anytime :)
       </p>
       <div class="actions">
         <a :href="pdfUrl" class="btn" download>Download PDF</a>

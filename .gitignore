@@ -2,8 +2,14 @@ node_modules
 .tools
 *.local
 .DS_Store
+dist/
 
 .serena
 
 # Local copy of baseline design reference (large)
 public/baseline-template.html
+
+# Sandbox artifact: files "deleted" during the redesign land here because the
+# dev-sandbox mount can't unlink files. Safe to delete this folder for real
+# from a normal file browser.
+.trash-deleted-files/

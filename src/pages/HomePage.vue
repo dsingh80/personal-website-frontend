@@ -1,29 +1,20 @@
 <script setup lang="ts">
-import { homeContent } from "@/content/home";
+import { ref } from "vue";
+import { contactContent, heroContent } from "@/content/home";
+import { projects } from "@/content/projects";
 import HeroSection from "@/components/home/HeroSection.vue";
-import StackMarqueeSection from "@/components/home/StackMarqueeSection.vue";
-import SectionJumpNavStrip from "@/components/home/SectionJumpNavStrip.vue";
-import StoryArticlesSection from "@/components/home/StoryArticlesSection.vue";
-import TimelineSection from "@/components/home/TimelineSection.vue";
-import SkillsGridSection from "@/components/home/SkillsGridSection.vue";
-import AboutSection from "@/components/home/AboutSection.vue";
-import ClosingCtaSection from "@/components/home/ClosingCtaSection.vue";
+import ProjectsSection from "@/components/home/ProjectsSection.vue";
+import ContactSection from "@/components/home/ContactSection.vue";
+import StickyCtaBar from "@/components/common/StickyCtaBar.vue";
+
+const showStickyBar = ref(false);
 </script>
 
 <template>
-  <div class="home">
-    <HeroSection :content="homeContent.hero" :metrics="homeContent.metrics" />
-    <StackMarqueeSection :labels="homeContent.stackMarquee" />
-    <SectionJumpNavStrip :items="homeContent.jumpNav" />
-    <StoryArticlesSection :articles="homeContent.story" />
-    <TimelineSection :entries="homeContent.timeline" />
-    <SkillsGridSection :clusters="homeContent.skillClusters" />
-    <AboutSection :content="homeContent.about" />
-    <ClosingCtaSection
-      :headline="homeContent.closingCta.headline"
-      :body="homeContent.closingCta.body"
-      :link-label="homeContent.closingCta.linkLabel"
-      :link-to="homeContent.closingCta.linkTo"
-    />
+  <div class="home-page">
+    <HeroSection :content="heroContent" @cta-out-of-view="showStickyBar = $event" />
+    <ProjectsSection :projects="projects" />
+    <ContactSection :content="contactContent" />
+    <StickyCtaBar :visible="showStickyBar" />
   </div>
 </template>
